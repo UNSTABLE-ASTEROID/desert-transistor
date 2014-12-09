@@ -21,6 +21,9 @@ angular
 				});
 			}
 
+			//when someone clicks confused, this function will be called in the controller
+			//NOTE: "lectureID" is just hard-coded and should be turned into an input in the
+			//same manner as "studentID"
 			function confusedStudent (name){
 				
 				socket.emit("confusion", {

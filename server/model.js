@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var timestamps = require('mongoose-timestamp');
 
+
 var confusionSchema = new mongoose.Schema({
 		
 		lectureID:  String,
