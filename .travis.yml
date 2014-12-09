@@ -1,9 +1,0 @@
-language: node_js
-node_js:
-- '0.10'
-deploy:
-  provider: heroku
-  api_key:
-    secure: XfoGCkhwSkNc/G8Pqa3XadY8dpAMNnxcqK9L+BpoOKuF85tI1zvjn7i0YJlp+IpkisPR2xXF5oDVeQEZnS+pqrkeg1kBxKNqEScMbfJ04B1wlg0ZjJlVLe6SH5SaP6muu5GHthC+ozS+jQJVs88zA3+4BC//9GYY9QODxpB6aAM=
-  app: confusionmonitor
-
