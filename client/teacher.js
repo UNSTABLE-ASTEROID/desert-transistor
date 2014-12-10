@@ -1,6 +1,6 @@
 var segments = 30, // 
   interval = 1000, //millesecond delay
-  totalStudents = 60,
+  maxStudents = 60,
   now = new Date(Date.now()),
   confusionCollection = [];
   confused = 0;
@@ -8,16 +8,20 @@ var segments = 30, //
       data[i] = 0 
   };
 
-var margin = {top: 20, right: 20, bottom: 20, left: 20},
-  width = document.body.offsetWidth - margin.right,
-  height = document.body.offsetHeight - margin.top - margin.bottom;
+var margin = {top: 20, right: 20, bottom: 20, left: 20};
+var maxWidth = document.body.offsetWidth - margin.right;
+var maxHeight = document.body.offsetHeight - margin.top - margin.bottom;
+var width = maxWidth;
+var height = maxHeight;
+
+
 
 var x = d3.time.scale()
   .domain([now - segments * interval, now])
   .range([0, width]); 
 
 var y = d3.scale.linear()
-  .domain([0,totalStudents])
+  .domain([0,maxStudents])
   .range([height, 0]);
 
 var line = d3.svg.line()
@@ -25,11 +29,25 @@ var line = d3.svg.line()
   .x(function(d, i) { return x(now - (segments - 1 - i) * interval); }) // calculate position once on posting!
   .y(function(d, i) { return y(d); });
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select(".confusionPulseGraph").append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+//This doesn't really work, but no one calls it anyway
+function setGraphDimensions(newWidth, newHeight, newX, newY){
+  width = newWidth > maxWidth ? width : newWidth;
+  height = newHeight > maxHeight? height : newHeight;
+  newX = newX || 0;
+  newY = newY || 0;
+
+  d3.select("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .attr("x", newX)
+  .attr("y", newY);
+};
 
 var axis = svg.append("g")
   .attr("class", "x axis")
@@ -41,18 +59,33 @@ var path = svg.append("g")
     .attr("class","graphline")
     .datum(data);
 
-var calculateConfusion = function(array){
-    if (array) {
-      confusionCollection = array;
-    }
-    if (confusionCollection.length){
-      confused = Math.min(confusionCollection.map(function(confusionObj) {
-        var elapsed = (new Date()) - (new Date(confusionObj.createdAt));
-        return (elapsed < 3000) ? 1 : (3000/elapsed);
-      }).reduce(function(a, b) {
-        return a + b; 
-      }), totalStudents);
-    }
+//Given a time since confusion, return confusion value 
+var confusionFunction = function(timeSinceConfusion){
+  return (timeSinceConfusion < 3000) ? 1 : (3000/timeSinceConfusion);
+};
+
+var sum = function(a,b){
+  return a+b;
+};
+
+var timeSinceConfusion = function(confusionObject){
+  return (new Date()) - (new Date(confusionObject.createdAt));
+};
+
+var updateConfusionCollection = function(array){
+  confusionCollection = array;
+};
+
+var calculateConfusion = function(){
+  if (confusionCollection.length > 0 ){
+    var confusionContributionPer = confusionCollection.map(function(confusionObj){
+      return confusionFunction(timeSinceConfusion(confusionObj));
+    });
+    var totalConfusionNow = confusionContributionPer.reduce(sum);
+  }else
+    totalConfusionNow = 0;
+  
+  return Math.min(totalConfusionNow, maxStudents);
 };
 
 function update() {
@@ -62,9 +95,7 @@ function update() {
   // y.domain([0, d3.max(data)]);
 
   // push the accumulated confused onto the back, and reset the confused
-  calculateConfusion();
-  data.push(confused);
-  // console.log(confused);
+  data.push(calculateConfusion());
 
   // redraw the line
   path
