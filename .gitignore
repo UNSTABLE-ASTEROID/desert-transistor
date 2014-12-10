@@ -31,4 +31,7 @@ dist/
 # mac crap
 .DS_Store
 
+#mongo database
+data/
+
 
