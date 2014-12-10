@@ -21,7 +21,7 @@ app.use('/api', voteRouter);
 //uses the url from the config file to connect to Mongo Labs
 var mongoUrl = require('./config');
 //connects to database
-mongoose.connect(process.env.MONGOLABS_URI || 'mongodb://localhost/confusionpulse');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/confusionpulse');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
