@@ -28,7 +28,12 @@ angular.module('app', [
     url: '/teacher',
     templateUrl: 'App/Teacher/teacher.html',
     controller: 'TeacherController'
-  });
+  })
+
+  .state('login',{
+    url: '/signup',
+    templateUrl: 'App/Auth/signup.html',
+  })
   
   $urlRouterProvider.otherwise('/');
 });
