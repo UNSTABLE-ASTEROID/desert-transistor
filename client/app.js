@@ -8,11 +8,10 @@ angular.module('app', [
   'authFactory'
 ])
 
-
-.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+.config(function ($stateProvider, $urlRouterProvider) {
   
   $stateProvider
-  
+
   .state('auth', {
     url: '/',
     templateUrl: 'App/Auth/login.html',
@@ -32,5 +31,4 @@ angular.module('app', [
   });
   
   $urlRouterProvider.otherwise('/');
-
-})
+});
