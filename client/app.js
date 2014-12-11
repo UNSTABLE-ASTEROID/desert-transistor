@@ -5,7 +5,8 @@ angular.module('app', [
   'TeacherController',
   'teacherFactory',
   'AuthController', 
-  'authFactory'
+  'authFactory',
+  'detailController'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider) {
@@ -33,6 +34,11 @@ angular.module('app', [
   .state('login',{
     url: '/signup',
     templateUrl: 'App/Auth/signup.html',
+  }) 
+  .state('teacher.detail', {
+    url: '/:id',
+    templateUrl: 'views/detail.html',
+    controller: 'detailController'
   })
   
   $urlRouterProvider.otherwise('/');
