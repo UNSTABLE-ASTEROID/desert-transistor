@@ -7,7 +7,10 @@ angular.module('app', [
   'AuthController', 
   'authFactory',
   'detailController',
-  'ClassController'
+  'ClassController',
+  'confusionGraphController',
+  'dataFactory',
+  'confusionGraph'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider) {
