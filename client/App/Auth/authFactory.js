@@ -2,12 +2,12 @@ angular
   .module('authFactory', [
     'SocketConnection'
   ])
-  .factory('authFactory', ['Socket', '$state', function(socket, $state) {
+  .factory('authFactory', ['Socket', '$state','$stateParams',function(socket, $state, $stateParams) {
     var studentName = '';
 
     //function will change the name value above to the name a person enters
     //when it is envoked in the login page
-  	var createName = function(name) {  		
+  	var createName = function(name, params) {  		
       this.studentName = name;
 
       //emit that a newConnection has been made
@@ -18,7 +18,9 @@ angular
       })
 
       //when the studentName is submitted, it will change the view to student
-      $state.go('student'); 
+      // console.log('authFactory',$state, $stateParams)
+      console.log('in authFactory sending', params,'to class')
+      $state.go('class',params); 
   	};
 
   	//this is used both in the AuthFactory and the StudentController

@@ -1,7 +1,7 @@
 angular
 	  .module('ClassController', [])
 	  .controller('ClassController', ['$scope','$stateParams', 'studentFactory', 'authFactory', function($scope,$stateParams, studentFactory, authFactory){
-	  	console.log($stateParams.class,'params')
+	  	console.log($stateParams,'params in class')
 
 		  studentFactory.connect();
 
