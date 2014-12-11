@@ -1,6 +1,9 @@
 var confusionController = require('./controller.js');
 
 module.exports = function(router){
-	router.post('/', confusionController.addVote );
-	router.get('/', confusionController.getVotes);
+  router.get('/', confusionController.getVotes);
+  router.get('/lectures', confusionController.getLectureData)
+  router.get('/teachers', confusionController.getTeacherData);
+
+  router.post('/', confusionController.addVote);
 };
