@@ -9,7 +9,7 @@ angular
 		//listens for any updates and will call a function in the teacher.js
 		socket.on("teacher:update", function(data){
 		    confusedStudents.push(data);
-		    calculateConfusion(confusedStudents);
+		    updateConfusionCollection(confusedStudents);
 		    console.log(data.studentID);
 		})
 
