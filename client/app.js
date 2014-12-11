@@ -6,7 +6,8 @@ angular.module('app', [
   'teacherFactory',
   'AuthController', 
   'authFactory',
-  'detailController'
+  'detailController',
+  'ClassController'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider) {
@@ -17,6 +18,11 @@ angular.module('app', [
     url: '/',
     templateUrl: 'App/Auth/login.html',
     controller: 'AuthController'
+  })
+  .state('class',{
+    url: '/class/:class',
+    templateUrl: 'App/Student/student.html',
+    controller: 'ClassController'
   })
 
   .state('student', {

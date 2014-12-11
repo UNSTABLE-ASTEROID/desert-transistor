@@ -9,9 +9,10 @@ angular
 			//when someone clicks confused, this function will be called in the controller
 	  	student.connect = function() {};
 
-	  	student.confusedStudent = function(name) {
+	  	student.confusedStudent = function(name, lectureID) {
+	  		console.log(arguments, 'confused')
 	  		socket.emit('confusion', {
-	  			lectureID: 'RECURSION',
+	  			lectureID: lectureID,
 	  			studentID: name
 	  		});
 	  	};
