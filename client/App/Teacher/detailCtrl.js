@@ -3,16 +3,18 @@ angular
     .controller('detailController',['$scope', '$stateParams', '$http', function($scope, $stateParams, $http){
        console.log($stateParams)
 
+       //$scope.data IS DATA
+       
+
         $scope.lecture = $stateParams.id;
 
         $http.get('/api/lectures?'+'lectureID='+$scope.lecture)
         .success(function (data, status, headers, config){
           // console.log('lectures',data)
           $scope.data = data
-          // $scope.data = formatData(data);
-          // console.log('data',$scope.data)
-          // createGraph($scope.data)
         })
+
+
 
         var formatData = function (data) {
           var timeStamps = [];

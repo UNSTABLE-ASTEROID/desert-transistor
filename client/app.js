@@ -8,7 +8,8 @@ angular.module('app', [
   'ClassController',
   'confusionGraphController',
   'dataFactory',
-  'confusionGraph'
+  'confusionGraph',
+  'historyGraph'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider) {
