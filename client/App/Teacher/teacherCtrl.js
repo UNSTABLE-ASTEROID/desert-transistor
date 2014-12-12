@@ -1,6 +1,7 @@
 angular
 	  .module('TeacherController', [])
-	  .controller('TeacherController', ['$scope', 'teacherFactory','$http', function($scope, teacherFactory, $http){
+	  .controller('TeacherController', ['$scope', 'teacherFactory','$http', 'Socket', function($scope, teacherFactory, $http, socket){
+      socket.connect();
 
       // $scope.lectures = ['bio','phys','chem']
 			$scope.confusedStudents = teacherFactory.confusedStudents;

@@ -64,5 +64,4 @@ http.listen(port, function(){
   console.log('listening on *:3000');
 });
 
-// require('./routes')(voteRouter);
-// app.use(voteRouter);
+require('./routes')(voteRouter);
