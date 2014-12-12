@@ -4,7 +4,7 @@
   "description": "Greenfield project",
   "main": "server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
+    "test": "grunt test",
     "postinstall": "./node_modules/bower/bin/bower install",
     "start": "node server/server.js"
   },
@@ -21,7 +21,10 @@
   "dependencies": {
     "body-parser": "^1.10.0",
     "bower": "^1.3.12",
+    "expect": "^1.1.0",
+    "expect.js": "^0.3.1",
     "express": "^4.10.4",
+    "grunt": "^0.4.5",
     "mongoose": "^3.8.20",
     "mongoose-timestamp": "^0.3.0",
     "morgan": "^1.5.0",
@@ -29,5 +32,17 @@
     "path": "^0.4.9",
     "q": "^1.1.2",
     "socket.io": "^1.2.1"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-karma": "^0.9.0",
+    "jasmine-core": "^2.1.3",
+    "karma": "^0.12.28",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-coverage": "^0.2.7",
+    "karma-jasmine": "^0.3.2",
+    "karma-nyan-reporter": "0.0.50",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-unicorn-reporter": "^0.1.4"
   }
 }
