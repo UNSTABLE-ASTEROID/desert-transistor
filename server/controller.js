@@ -2,6 +2,7 @@ var helpers = require('./helpers.js');
 
 module.exports = {
 	addVote: function(req, res, next){
+		console.log(req.body);
 		helpers.addVote(req.body, function(data){
 			console.log('success');
 			res.send(data);
@@ -29,7 +30,7 @@ module.exports = {
 		helpers.getTeacherData(teacherID, function(data) {
 			//convert the data to an array of unique lectureIDs
 			var lectures = {};
-			
+
 			for (var i = 0; i < data.length; ++i) {
 				lectures[data[i].lectureID] = true;
 			}

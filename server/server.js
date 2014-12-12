@@ -49,6 +49,13 @@ io.on('connection', function(socket){
   })
 });
 
+app.post('/', function (req, res) {
+  helpers.addVote(req.body, function(data) {
+    io.sockets.emit('teacher:update', data);
+    res.send('success');
+  });
+});
+
 ///////////////////////////    STARTING SERVER    ///////////////////////////
 
 app.use(express.static(dir));
@@ -57,5 +64,5 @@ http.listen(port, function(){
   console.log('listening on *:3000');
 });
 
-require('./routes')(voteRouter);
-app.use(voteRouter);
+// require('./routes')(voteRouter);
+// app.use(voteRouter);
