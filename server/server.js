@@ -5,7 +5,7 @@ var dir = path.resolve(__dirname + '/../client');
 var controller = require('./controller');
 var helpers = require('./helpers');
 var port = process.env.PORT || 3000;
-var mongoose = require('mongoose');  
+var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var http = require('http').Server(app);
@@ -31,7 +31,7 @@ db.once('open', function callback () {
 ///////////////////////////    SOCKET.IO    ///////////////////////////
 //connects to Socket.io
 io.on('connection', function(socket){
-  
+
   console.log('a user connected');
   //teacher can be notified to new connections. NOT complete
   io.sockets.emit("teacher:newStudent", {});
@@ -58,3 +58,4 @@ http.listen(port, function(){
 });
 
 require('./routes')(voteRouter);
+app.use(voteRouter);
