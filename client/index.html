@@ -12,6 +12,10 @@
   <div ui-view></div>
   <div class="confusionPulseGraph"></div>
 
+  <div ng-controller="confusionGraphController">
+    <confusion-graph></confusion-graph>
+  </div>
+
   <!-- components -->
   <script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
   <script src="bower_components/c3/c3.min.js" charset="utf-8"></script>
@@ -30,7 +34,7 @@
   <script src="App/Student/studentFactory.js"></script>
 
   <!-- teacher -->
-  <script src="teacher.js"></script>
+<!--   // <script src="teacher.js"></script> -->
   <script src="App/Teacher/teacherCtrl.js"></script>
   <script src="App/Teacher/teacherFactory.js"></script> 
   <script src="App/Teacher/detailCtrl.js"></script> 
@@ -38,7 +42,13 @@
   <!-- auth  -->
   <script src="App/Auth/authCtrl.js"></script>
   <script src="App/Auth/authFactory.js"></script>
-  
+
+  <!-- graph  -->
+  <script src="App/Graphs/confusionGraph.js"></script>
+  <script src="App/Graphs/confusionGraphController.js"></script>
+  <script src="App/Graphs/dataFactory.js"></script>
+
+
   <!-- app.js -->
   <script src="app.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
