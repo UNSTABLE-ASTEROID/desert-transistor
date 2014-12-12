@@ -6,7 +6,7 @@
   "scripts": {
     "test": "grunt test",
     "postinstall": "./node_modules/bower/bin/bower install",
-    "start": "node server/server.js"
+    "start": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
@@ -35,14 +35,19 @@
   },
   "devDependencies": {
     "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
     "grunt-karma": "^0.9.0",
+    "grunt-mocha": "^0.4.11",
+    "grunt-simple-mocha": "^0.4.0",
     "jasmine-core": "^2.1.3",
     "karma": "^0.12.28",
     "karma-chrome-launcher": "^0.1.7",
     "karma-coverage": "^0.2.7",
     "karma-jasmine": "^0.3.2",
+    "karma-mocha": "^0.1.10",
     "karma-nyan-reporter": "0.0.50",
     "karma-phantomjs-launcher": "^0.1.4",
-    "karma-unicorn-reporter": "^0.1.4"
+    "karma-unicorn-reporter": "^0.1.4",
+    "mocha": "^2.0.1"
   }
 }

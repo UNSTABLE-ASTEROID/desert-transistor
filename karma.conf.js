@@ -14,7 +14,7 @@ module.exports = function(config) {
     basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'mocha'],
 
     // list of files / patterns to load in the browser
     files: [      
@@ -27,7 +27,7 @@ module.exports = function(config) {
 
       // our spec files
       'node_modules/expect.js/index.js',
-      'test/**/*.js'
+      'test/karma/**/*.js'
       ],
 
     // list of files / patterns to exclude
