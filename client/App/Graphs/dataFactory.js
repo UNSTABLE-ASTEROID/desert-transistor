@@ -15,8 +15,9 @@ angular.module('dataFactory',['SocketConnection']).factory('dataFactory', ['Sock
       filter = filFunction;
     };
 
+    socket.connect();
     //listens for any updates and will call a function in the teacher.js
-    socket.on("teacher:update", function(data){
+    socket.connection.on("teacher:update", function(data){
         allConfusedStudents.push(data);
         confusedStudents = allConfusedStudents.filter(filter);
 

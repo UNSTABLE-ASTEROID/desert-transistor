@@ -11,7 +11,7 @@ angular
 
 	  	student.confusedStudent = function(name, lectureID) {
 	  		console.log(arguments, 'confused')
-	  		socket.emit('confusion', {
+	  		socket.connection.emit('confusion', {
 	  			lectureID: lectureID,
 	  			studentID: name
 	  		});

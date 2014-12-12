@@ -7,7 +7,7 @@ angular
 		var confusedStudents = [];
 
 		//listens for any updates and will call a function in the teacher.js
-		socket.on("teacher:update", function(data){
+		socket.connection.on("teacher:update", function(data){
 		    confusedStudents.push(data);
 		    // updateConfusionCollection(confusedStudents);
 		    console.log(data.studentID);
