@@ -39,10 +39,11 @@
 #loginBtn {
   font-size: 20px;
   padding: 10px 15px;
-  margin-left: 20px;
+  margin-left: 50%;
+  -webkit-transform: translateX(-50%);
 }
 
-#loginInp {
+.loginUsername, .loginPassword {
   font-size: 20px;
   padding: 10px 15px;
 }
@@ -56,6 +57,7 @@ html, body {
   background-color: #b3b0ad;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 
 .axis text {
@@ -91,4 +93,10 @@ hr {
   color: black;
   font-weight: bold;
 
+.title {
+  position: absolute;
+  top: 10px;
+  font-size: 2em;
+  margin-left: 50%;
+  -webkit-transform: translateX(-50%);
 }

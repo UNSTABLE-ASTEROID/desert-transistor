@@ -1,9 +1,12 @@
+<span class="title">Teacher Login</span>
 <div id="loginInterface">
-  <input id="loginInp" type="text" placeholder="Enter name" ng-model="username" required>
-  <br>
-  <input id="loginInp" type="password" placeholder="Password" ng-model="password" required>
-  <br>
-  <button id="loginBtn" ng-click="submit(username, password)">Submit</button>
-  <br>
-  {{ student.studentName }}
+  <form>
+    <br>
+    <input class="loginUsername" type="text" placeholder="Enter name" ng-model="username" required>
+    <br>
+    <input class="loginPassword" type="password" placeholder="Password" ng-model="password" required>
+    <br>
+    <button type="submit" id="loginBtn" ng-click="submit(username, password)">Submit</button>
+    <br>
+  </form>
 </div>
