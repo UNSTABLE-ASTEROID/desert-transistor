@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>teacherFactory.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="confusionGraph.html">
+                confusionGraph.js
+              </a>
+            
+              
+              <a class="source" href="confusionGraphController.html">
+                confusionGraphController.js
+              </a>
+            
+              
+              <a class="source" href="dataFactory.html">
+                dataFactory.js
+              </a>
+            
+              
+              <a class="source" href="historyGraph.html">
+                historyGraph.js
+              </a>
+            
+              
+              <a class="source" href="classCtrl.html">
+                classCtrl.js
+              </a>
+            
+              
+              <a class="source" href="studentCtrl.html">
+                studentCtrl.js
+              </a>
+            
+              
+              <a class="source" href="studentFactory.html">
+                studentFactory.js
+              </a>
+            
+              
+              <a class="source" href="detail.html">
+                detail.js
+              </a>
+            
+              
+              <a class="source" href="detailCtrl.html">
+                detailCtrl.js
+              </a>
+            
+              
+              <a class="source" href="teacherAuth.html">
+                teacherAuth.js
+              </a>
+            
+              
+              <a class="source" href="teacherCtrl.html">
+                teacherCtrl.js
+              </a>
+            
+              
+              <a class="source" href="teacherFactory.html">
+                teacherFactory.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>teacherFactory.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>angular
+  .module(<span class="hljs-string">'teacherFactory'</span>, [
+  	<span class="hljs-string">'SocketConnection'</span>	
+  ])
+
+  .factory(<span class="hljs-string">'teacherFactory'</span>, [<span class="hljs-string">'Socket'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(socket)</span></span>{
+		<span class="hljs-keyword">var</span> confusedStudents = [];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>listens for any updates and will call a function in the teacher.js</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		socket.connection.on(<span class="hljs-string">"teacher:update"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span></span>{
+		    confusedStudents.push(data);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>updateConfusionCollection(confusedStudents);</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		    <span class="hljs-built_in">console</span>.log(data.studentID);
+		})
+
+		<span class="hljs-keyword">return</span> {
+			confusedStudents: confusedStudents
+		};
+
+	}]);</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

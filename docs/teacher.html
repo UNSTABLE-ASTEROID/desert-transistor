@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>teacher.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="app.html">
+                app.js
+              </a>
+            
+              
+              <a class="source" href="index.html">
+                index.js
+              </a>
+            
+              
+              <a class="source" href="teacher.html">
+                teacher.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>teacher.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> segments = <span class="hljs-number">30</span>, <span class="hljs-comment">// </span>
+  interval = <span class="hljs-number">1000</span>, <span class="hljs-comment">//millesecond delay</span>
+  maxStudents = <span class="hljs-number">60</span>,
+  now = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-built_in">Date</span>.now()),
+  confusionCollection = [];
+  confused = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>, data = []; i &lt; segments; i++) {
+      data[i] = <span class="hljs-number">0</span> 
+  };
+
+<span class="hljs-keyword">var</span> margin = {top: <span class="hljs-number">20</span>, right: <span class="hljs-number">20</span>, bottom: <span class="hljs-number">20</span>, left: <span class="hljs-number">20</span>};
+<span class="hljs-keyword">var</span> maxWidth = <span class="hljs-built_in">document</span>.body.offsetWidth - margin.right;
+<span class="hljs-keyword">var</span> maxHeight = <span class="hljs-built_in">document</span>.body.offsetHeight - margin.top - margin.bottom;
+<span class="hljs-keyword">var</span> width = maxWidth;
+<span class="hljs-keyword">var</span> height = maxHeight;
+
+
+
+<span class="hljs-keyword">var</span> x = d3.time.scale()
+  .domain([now - segments * interval, now])
+  .range([<span class="hljs-number">0</span>, width]); 
+
+<span class="hljs-keyword">var</span> y = d3.scale.linear()
+  .domain([<span class="hljs-number">0</span>,maxStudents])
+  .range([height, <span class="hljs-number">0</span>]);
+
+<span class="hljs-keyword">var</span> line = d3.svg.line()
+  .interpolate(<span class="hljs-string">"basis"</span>)
+  .x(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d, i)</span> </span>{ <span class="hljs-keyword">return</span> x(now - (segments - <span class="hljs-number">1</span> - i) * interval); }) <span class="hljs-comment">// calculate position once on posting!</span>
+  .y(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d, i)</span> </span>{ <span class="hljs-keyword">return</span> y(d); });
+
+<span class="hljs-keyword">var</span> svg = d3.select(<span class="hljs-string">".confusionPulseGraph"</span>).append(<span class="hljs-string">"svg"</span>)
+  .attr(<span class="hljs-string">"width"</span>, width + margin.left + margin.right)
+  .attr(<span class="hljs-string">"height"</span>, height + margin.top + margin.bottom)
+  .append(<span class="hljs-string">"g"</span>)
+  .attr(<span class="hljs-string">"transform"</span>, <span class="hljs-string">"translate("</span> + margin.left + <span class="hljs-string">","</span> + margin.top + <span class="hljs-string">")"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>This doesn’t really work, but no one calls it anyway</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setGraphDimensions</span><span class="hljs-params">(newWidth, newHeight, newX, newY)</span></span>{
+  width = newWidth &gt; maxWidth ? width : newWidth;
+  height = newHeight &gt; maxHeight? height : newHeight;
+  newX = newX || <span class="hljs-number">0</span>;
+  newY = newY || <span class="hljs-number">0</span>;
+
+  d3.select(<span class="hljs-string">"svg"</span>)
+  .attr(<span class="hljs-string">"width"</span>, width + margin.left + margin.right)
+  .attr(<span class="hljs-string">"height"</span>, height + margin.top + margin.bottom)
+  .attr(<span class="hljs-string">"x"</span>, newX)
+  .attr(<span class="hljs-string">"y"</span>, newY);
+};
+
+<span class="hljs-keyword">var</span> axis = svg.append(<span class="hljs-string">"g"</span>)
+  .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"x axis"</span>)
+  .attr(<span class="hljs-string">"transform"</span>, <span class="hljs-string">"translate(0,"</span> + height + <span class="hljs-string">")"</span>) <span class="hljs-comment">// move to bottom of screen</span>
+  .call(x.axis = d3.svg.axis().scale(x).orient(<span class="hljs-string">"bottom"</span>));
+
+<span class="hljs-keyword">var</span> path = svg.append(<span class="hljs-string">"g"</span>)
+  .append(<span class="hljs-string">"path"</span>)
+    .attr(<span class="hljs-string">"class"</span>,<span class="hljs-string">"graphline"</span>)
+    .datum(data);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Given a time since confusion, return confusion value </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> confusionFunction = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(timeSinceConfusion)</span></span>{
+  <span class="hljs-keyword">return</span> (timeSinceConfusion &lt; <span class="hljs-number">3000</span>) ? <span class="hljs-number">1</span> : (<span class="hljs-number">3000</span>/timeSinceConfusion);
+};
+
+<span class="hljs-keyword">var</span> sum = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(a,b)</span></span>{
+  <span class="hljs-keyword">return</span> a+b;
+};
+
+<span class="hljs-keyword">var</span> timeSinceConfusion = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(confusionObject)</span></span>{
+  <span class="hljs-keyword">return</span> (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()) - (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(confusionObject.createdAt));
+};
+
+<span class="hljs-keyword">var</span> updateConfusionCollection = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(array)</span></span>{
+  confusionCollection = array;
+};
+
+<span class="hljs-keyword">var</span> calculateConfusion = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-keyword">if</span> (confusionCollection.length &gt; <span class="hljs-number">0</span> ){
+    <span class="hljs-keyword">var</span> confusionContributionPer = confusionCollection.map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(confusionObj)</span></span>{
+      <span class="hljs-keyword">return</span> confusionFunction(timeSinceConfusion(confusionObj));
+    });
+    <span class="hljs-keyword">var</span> totalConfusionNow = confusionContributionPer.reduce(sum);
+  }<span class="hljs-keyword">else</span>
+    totalConfusionNow = <span class="hljs-number">0</span>;
+  
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.min(totalConfusionNow, maxStudents);
+};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>update the domains</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  now = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+  x.domain([now - (segments - <span class="hljs-number">2</span>) * interval, now - interval]);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>y.domain([0, d3.max(data)]);</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>push the accumulated confused onto the back, and reset the confused</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  data.push(calculateConfusion());</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>redraw the line</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  path
+    .attr(<span class="hljs-string">"d"</span>, line)
+    .attr(<span class="hljs-string">"transform"</span>, <span class="hljs-literal">null</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>slide the x-axis left</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  axis.call(x.axis)
+    .selectAll(<span class="hljs-string">"text"</span>)
+      .attr(<span class="hljs-string">"y"</span>,<span class="hljs-number">10</span>)
+      .attr(<span class="hljs-string">"transform"</span>, <span class="hljs-string">"rotate(45)"</span>)
+      .style(<span class="hljs-string">"text-anchor"</span>, <span class="hljs-string">"start"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>slide the line left</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  path.transition()
+    .duration(interval)
+    .ease(<span class="hljs-string">"linear"</span>)
+    .attr(<span class="hljs-string">"transform"</span>, <span class="hljs-string">"translate("</span> + x(now - (segments - <span class="hljs-number">1</span>) * interval) + <span class="hljs-string">")"</span>)
+    .each(<span class="hljs-string">"end"</span>,update);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>pop the old data point off the front</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  data.shift();
+}
+
+update();</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
