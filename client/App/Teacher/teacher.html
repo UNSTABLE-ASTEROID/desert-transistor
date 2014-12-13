@@ -1,20 +1,19 @@
 <div class='container'>
-	Record new class! click me
 	<div class='row'>
-      <div class='col-xs-6'>
+      <div class='col-xs-6 collapse navbar-collapse navbar-ex1-collapse'>
 
-      	Classes 
-      	<ul>
-      		<li ng-repeat='lecture in lectures'>
-      		<a ui-sref="teacher.detail({id: lecture })">
-      		  {{lecture}}
-      		</a> 
+      	<h2>Classes</h2>
+      	<ul class ="nav side-nav">
+      		  <li ng-repeat='lecture in lectures'>
+        		  <a class='lectureOptions' ui-sref="teacher.detail({id: lecture })">
+        		  {{lecture}}
+        		  </a> 
+             
       		</li>
       	</ul>
       </div>
-      <div ui-view class='col-xs-6'>
 
-        dummy graph here!
+      <div ui-view class='col-xs-6'>
       </div>
     </div>
 </div>
