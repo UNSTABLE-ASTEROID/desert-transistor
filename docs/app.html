@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>app.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="app.html">
+                app.js
+              </a>
+            
+              
+              <a class="source" href="index.html">
+                index.js
+              </a>
+            
+              
+              <a class="source" href="teacher.html">
+                teacher.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>app.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'app'</span>, [
+  <span class="hljs-string">'ui.router'</span>,
+  <span class="hljs-string">'studentFactory'</span>,
+  <span class="hljs-string">'TeacherController'</span>,
+  <span class="hljs-string">'TeacherAuth'</span>,
+  <span class="hljs-string">'teacherFactory'</span>,
+  <span class="hljs-string">'detailController'</span>,
+  <span class="hljs-string">'ClassController'</span>,
+  <span class="hljs-string">'confusionGraphController'</span>,
+  <span class="hljs-string">'dataFactory'</span>,
+  <span class="hljs-string">'confusionGraph'</span>,
+  <span class="hljs-string">'historyGraph'</span>
+])
+
+.config(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">($stateProvider, $urlRouterProvider)</span> </span>{
+  
+  $stateProvider
+
+  .state(<span class="hljs-string">'teacherAuth'</span>, {
+    url: <span class="hljs-string">'/auth'</span>,
+    templateUrl: <span class="hljs-string">'App/Teacher/teacherLogin.html'</span>,
+    controller: <span class="hljs-string">'TeacherAuthController'</span>
+  })
+
+  .state(<span class="hljs-string">'class'</span>,{
+    url: <span class="hljs-string">'/class/:class'</span>,
+    templateUrl: <span class="hljs-string">'App/Student/student.html'</span>,
+    controller: <span class="hljs-string">'ClassController'</span>,
+  })
+  
+  .state(<span class="hljs-string">'teacher'</span>, {
+    url: <span class="hljs-string">'/teacher/:teacherID'</span>,
+    templateUrl: <span class="hljs-string">'App/Teacher/teacher.html'</span>,
+    controller: <span class="hljs-string">'TeacherController'</span>
+  })
+
+  .state(<span class="hljs-string">'teacher.detail'</span>, {
+    url: <span class="hljs-string">'/:id'</span>,
+    templateUrl: <span class="hljs-string">'views/detail.html'</span>,
+    controller: <span class="hljs-string">'detailController'</span>
+  })
+  
+  $urlRouterProvider.otherwise(<span class="hljs-string">'/auth'</span>);
+});</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

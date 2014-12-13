@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 var voteRouter = express.Router();
 app.use('/api', voteRouter);
+app.use('/docs', express.static(__dirname + '/../docs'));
 
 ///////////////////////////    DATABASE    ///////////////////////////
 //uses the url from the config file to connect to Mongo Labs
