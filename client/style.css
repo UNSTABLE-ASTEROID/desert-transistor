@@ -74,3 +74,12 @@ html, body {
   stroke: red;
   stroke-width: 3px;
 }
+
+.chartTitle {
+  text-align: center;
+}
+
+.lectureName {
+  text-align: center;
+}
+
