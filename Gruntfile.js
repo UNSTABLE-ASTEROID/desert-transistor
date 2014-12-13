@@ -2,7 +2,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-docco');
 
   
   grunt.initConfig({
@@ -40,19 +39,9 @@ module.exports = function(grunt) {
       all: {
         src: ['test/mocha/**/*.js']
       }
-    },
-    docco: {
-      debug: {
-        src: ['client/App/Graphs/*.js','client/App/Student/*.js','client/App/Teacher/*.js','client/*.js','server/*.js'],
-        options: {
-          output: 'docs/'
-        }
-      }
     }
   });
 
-
-  grunt.registerTask('docs', ['docco']); 
   grunt.registerTask('mocha', ['simplemocha']); 
   grunt.registerTask('lint', ['jshint']);
   grunt.registerTask('test', ['karma:single','mocha']);
