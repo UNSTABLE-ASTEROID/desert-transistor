@@ -83,3 +83,12 @@ html, body {
   text-align: center;
 }
 
+hr {
+  border-color: black;
+}
+
+.lectureOptions {
+  color: black;
+  font-weight: bold;
+
+}

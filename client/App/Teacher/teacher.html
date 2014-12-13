@@ -1,4 +1,4 @@
-<div class='container'>
+<!-- <div class='container'>
 	<div class='row'>
       <div class='col-xs-6 collapse navbar-collapse navbar-ex1-collapse'>
 
@@ -8,7 +8,6 @@
         		  <a class='lectureOptions' ui-sref="teacher.detail({id: lecture })">
         		  {{lecture}}
         		  </a> 
-             
       		</li>
       	</ul>
       </div>
@@ -17,3 +16,50 @@
       </div>
     </div>
 </div>
+ -->
+
+<div class="container">
+  
+  <!-- upper section -->
+  <div class="row">
+  <div class="col-sm-3">
+      <!-- left -->
+      <h3><i class="glyphicon glyphicon-book"></i> Classes</h3>
+      <hr>
+      
+      <ul class="nav nav-stacked">
+        <li ng-repeat='lecture in lectures'>
+              <a class='lectureOptions' ui-sref="teacher.detail({id: lecture })">
+              {{lecture}}
+              </a> 
+          </li>
+      </ul>
+      
+      <hr>
+      
+  </div><!-- /span-3 -->
+  <div class="col-sm-9">
+        
+      <!-- column 2 --> 
+       <h3><i class="glyphicon glyphicon-dashboard"></i> Dashboard</h3>  
+            
+       <hr>
+          </div><!--/col-->
+    <div ui-view class='col-xs-6 col-xs-offset-1'>
+
+    </div><!--/col-span-9-->
+    
+  </div><!--/row-->
+  <!-- /upper section -->
+  
+
+          
+          
+        </div><!--/panel content-->
+      </div><!--/panel-->
+
+    
+
+  </div><!--/row-->
+  
+</div><!--/container-->
