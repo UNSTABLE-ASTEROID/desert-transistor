@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 var voteRouter = express.Router();
 app.use('/api', voteRouter);
+app.use('/docs/',express.static(__dirname + '/../docs'))
 
 ///////////////////////////    DATABASE    ///////////////////////////
 //uses the url from the config file to connect to Mongo Labs
@@ -38,14 +39,14 @@ io.on('connection', function(socket){
   io.emit("event", {it: "works"});
   //listen for students to click button and emit confusion event
   socket.on('confusion', function(data) {
-  	console.log("COOOONNNFUUUSIIIOOOONNNN!");
-  	console.log(data);
-  	//add the incoming student data to the database
+    console.log("COOOONNNFUUUSIIIOOOONNNN!");
+    console.log(data);
+    //add the incoming student data to the database
     helpers.addVote(data, function(data) {
-  		console.log("DOOR!");
+      console.log("DOOR!");
       //pass the data down to the teacher to be displayed in the graph
       io.sockets.emit('teacher:update', data);
-  	});
+    });
   })
 });
 
